@@ -60,44 +60,11 @@ func (r repository) Create(ctx context.Context, user entity.User) error {
 }
 
 func (r repository) Update(ctx context.Context, userId string, user entity.User) error {
-	id, err := primitive.ObjectIDFromHex(userId)
-	if err != nil {
-		return err
-	}
-	// Figure out which ID we need to update
-	filter := bson.M{"_id": id}
-	collection, _ := r.db.GetMongoDBCollection("users")
-	var newUser entity.User
-	update := bson.D{
-		{Key: "$set", Value: bson.D{
-			{Key: "avatarURL", Value: user.AvatarURL},
-			{Key: "firstName", Value: user.FirstName},
-			{Key: "lastName", Value: user.LastName},
-			{Key: "email", Value: user.Email},
-			{Key: "createdAt", Value: user.CreatedAt},
-			{Key: "updatedAt", Value: time.Now()},
-		},
-		},
-	}
-	err = collection.FindOneAndUpdate(ctx, filter, update).Decode(&newUser)
-	if err != nil {
-		return err
-	}
-	newUser.UserId = id.String()
-
+	//TODO: needs to be implemented
 	return nil
 }
 
 func (r repository) Delete(ctx context.Context, userId string) error {
-	id, err := primitive.ObjectIDFromHex(userId)
-	if err != nil {
-		return err
-	}
-	filter := bson.M{"_id": id}
-	collection, _ := r.db.GetMongoDBCollection("users")
-	_, err = collection.DeleteOne(context.TODO(), filter)
-	if err != nil {
-		return err
-	}
+	//TODO: needs to be implemented
 	return nil
 }
