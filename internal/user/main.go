@@ -29,8 +29,8 @@ func (u userservice) InitializeService(r *mux.Router) {
 	// Register our routes
 	r.HandleFunc("/api/users", controller.GetUsers).Methods("GET")
 	r.HandleFunc("/api/users/{id}", controller.GetUserById).Methods("GET")
-	r.HandleFunc("/users", controller.CreateUser).Methods("POST")
-	r.HandleFunc("/users/{id}", controller.UpdateUser).Methods("PUT")
-	r.HandleFunc("/users/{id}", controller.DeleteUser).Methods("DELETE")
+	r.HandleFunc("/api/users", controller.CreateUser).Methods("POST")
+	r.HandleFunc("/api/users/{id}", controller.UpdateUser).Methods("PUT")
+	r.HandleFunc("/api/users/{id}", controller.DeleteUser).Methods("DELETE")
 
 }
